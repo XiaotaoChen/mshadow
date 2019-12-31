@@ -45,6 +45,23 @@ sumall_except_dim(const Exp<SrcExp, DType, etype> &exp) {
   return ReduceTo1DExp<SrcExp, DType, red::sum,
                        ExpInfo<SrcExp>::kDim - dimkeep>(exp.self(), DType(1));
 }
+
+template<int dimkeep,  typename SrcExp, typename DType, int etype>
+inline ReduceTo1DExp<SrcExp, DType, red::maximum,
+                     ExpInfo<SrcExp>::kDim - dimkeep>
+maxall_except_dim(const Exp<SrcExp, DType, etype> &exp) {
+  return ReduceTo1DExp<SrcExp, DType, red::maximum,
+                       ExpInfo<SrcExp>::kDim - dimkeep>(exp.self(), DType(1));
+}
+
+template<int dimkeep,  typename SrcExp, typename DType, int etype>
+inline ReduceTo1DExp<SrcExp, DType, red::minimum,
+                     ExpInfo<SrcExp>::kDim - dimkeep>
+minall_except_dim(const Exp<SrcExp, DType, etype> &exp) {
+  return ReduceTo1DExp<SrcExp, DType, red::minimum,
+                       ExpInfo<SrcExp>::kDim - dimkeep>(exp.self(), DType(1));
+}
+
 /*!
  * \brief reduce over all dimensions, except dimkeep
  * \param exp input expression that must be a matrix Tensor<?,2>
